@@ -48,5 +48,3 @@ setopt hist_find_no_dups
 
 # Aliases
 alias ls='ls --color'
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
