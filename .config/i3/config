@@ -1,9 +1,10 @@
 set $mod Mod4
 
+exec_always --no-startup-id ~/touchpad-launch-settings.sh
 exec_always --no-startup-id killall polybar
-
-# Execute polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch_polybar.sh
+exec --no-startup-id nitrogen --set-auto ~/.config/backgrounds/tokyo.jpg
+bindsym $mod+space exec rofi -show combi
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -51,10 +52,10 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -63,10 +64,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -75,7 +76,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+" split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -92,7 +93,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -170,3 +171,17 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #7aa2f7     #414868     #c0caf5     #7aa2f7     #414868
+client.focused_inactive #414868     #1a1b26     #c0caf5     #414868     #1a1b26
+client.unfocused        #414868     #1a1b26     #c0caf5     #414868     #1a1b26
+client.urgent           #f7768e     #f7768e     #1a1b26     #f7768e     #f7768e
+client.placeholder      #1a1b26     #1a1b26     #c0caf5     #1a1b26     #1a1b26
+client.background       #1a1b26
+
+bindsym Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+
+bindsym Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
