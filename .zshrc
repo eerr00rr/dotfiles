@@ -53,3 +53,7 @@ setopt hist_find_no_dups
 
 # Aliases
 alias ls='ls --color'
+
+# Set Neovim as the default editor
+export EDITOR="nvim"
+export VISUAL="nvim"
