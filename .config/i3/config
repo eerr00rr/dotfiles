@@ -9,10 +9,10 @@ set $launcher		rofi -show drun
 set $compositor		picom
 set $editor		nvim
 set $file_manager	thunar
-set $wallpaper_setter	nitrogen --set-auto $HOME/.config/backgrounds/tokyo.jpg
+set $wallpaper_setter	nitrogen --set-auto $HOME/.config/backgrounds/skeleton.jpg
 
 ##Startup Applications
-exec --no-startup-id $wallpaper_setter
+exec_always --no-startup-id $wallpaper_setter
 exec_always --no-startup-id $compositor
 exec_always --no-startup-id $HOME/.config/polybar/launch_polybar.sh
 exec_always --no-startup-id $HOME/touchpad-launch-settings.sh
