@@ -57,3 +57,4 @@ alias ls='ls --color'
 # Set Neovim as the default editor
 export EDITOR="nvim"
 export VISUAL="nvim"
+export MANPAGER="nvim +Man!"
