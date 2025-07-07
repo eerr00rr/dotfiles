@@ -11,14 +11,17 @@ set $editor		nvim
 set $file_manager	thunar
 set $wallpaper_setter	nitrogen --set-auto $HOME/.config/backgrounds/skeleton.jpg
 
-##Startup Applications
+### Startup Applications ###
 exec_always --no-startup-id $wallpaper_setter
 exec_always --no-startup-id $compositor
 exec_always --no-startup-id $HOME/.config/polybar/launch_polybar.sh
-exec_always --no-startup-id $HOME/touchpad-launch-settings.sh
-
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
+
+### I/O configs ###
+exec_always --no-startup-id $HOME/touchpad-launch-settings.sh
+exec_always --no-startup-id xmodmap ~/.Xmodmap
+
 
 ### Audio Adjust ###
 set $refresh_i3status killall -SIGUSR1 i3status
