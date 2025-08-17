@@ -1,4 +1,4 @@
--- LSP Plugins
+-- LSP Pluginslsp
 return {
 	{
 		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -219,6 +219,10 @@ return {
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
+				html = {},
+				cssls = {},
+				ts_ls = {},
+				jsonls = {},
 				intelephense = {},
 				eslint = {},
 				pyright = {},
@@ -229,7 +233,6 @@ return {
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
-				ts_ls = {},
 				--
 
 				lua_ls = {
@@ -246,6 +249,7 @@ return {
 						},
 					},
 				},
+				dockerls = {},
 			}
 
 			-- Ensure the servers and tools above are installed

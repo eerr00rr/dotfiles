@@ -5,7 +5,7 @@ return {
 		config = function()
 			---@diagnostic disable-next-line: missing-fields
 			require("kanagawa").setup({
-				compile = true, -- enable compiling the colorscheme
+				compile = false, -- enable compiling the colorscheme
 				undercurl = true, -- enable undercurls
 				commentStyle = { italic = true },
 				functionStyle = {},
@@ -14,7 +14,7 @@ return {
 				typeStyle = {},
 				transparent = false, -- do not set background color
 				dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-				terminalColors = false, -- define vim.g.terminal_color_{0,17}
+				terminalColors = true, -- define vim.g.terminal_color_{0,17}
 				colors = { -- add/modify theme and palette colors
 					palette = {},
 					theme = {
@@ -44,10 +44,10 @@ return {
 								pmenu = {
 									fg = "#DCD7BA", -- (palette.fujiWhite)
 									fg_sel = "none",
-									bg = "#1D1C19", -- (palette.dragonBlack2)
-									bg_sel = "#181616", -- (palette.dragonBlack3)
-									bg_thumb = "#393836", -- (palette.dragonBlack5)
-									bg_sbar = "#282727", -- (palette.dragonBlack4)
+									bg = "#12120f", -- (palette.dragonBlack1)
+									bg_sel = "#393836", -- (palette.dragonBlack3)
+									bg_thumb = "#12120f", -- (palette.dragonBlack1)
+									bg_sbar = "#393836", -- (palette.dragonBlack3)
 								},
 
 								float = {
