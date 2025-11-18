@@ -59,6 +59,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Netrw shortcut
-vim.keymap.set("n", "<leader>n", vim.cmd.Ex, { desc = "Open Netrw" })
+-- vim.keymap.set("n", "<leader>n", vim.cmd.Ex, { desc = "Open Netrw" })
 
 -- vim: ts=2 sts=2 sw=2 et
