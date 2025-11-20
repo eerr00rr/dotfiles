@@ -1,11 +1,12 @@
 # dotfiles
 
 ## Installation
-----------
-### Download the necessary packages:
+
+### Download and change the necessary packages:
 Necessarry packages:
 - terminal:
 `kitty zsh tmux git lazygit`
+`sudo chsh -s $(which zsh) $USER` and log out to change the default $SHELL
 - neovim:
 `nvim make gcc unzip ripgrep fd-find`
 - nerdfont:
