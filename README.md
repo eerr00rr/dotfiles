@@ -36,7 +36,7 @@ sudo cp -r dotfiles/Hack-Nerd-Font /usr/share/fonts/ && fc-cache -f -v
 ```
 hyprland hyprpaper waybar power-profiles-daemon
 ```
-> [~NOTE]
+> [!NOTE]
 > In fedora do `sudo dnf copr enable solopasha/hyprland` before installing the packages
 > Also fedora has Tuned instead of `power-profiles-daemon` so you won't need to install it
 
