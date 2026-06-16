@@ -66,7 +66,7 @@ install_packages() {
 
   local terminal_pkgs desktop_pkgs pkgs installer update_cmd install_cmd yesflag
   terminal_pkgs=(git curl zsh neovim tmux fzf ripgrep unzip tar less python3 nodejs npm restic)
-  desktop_pkgs=(hyprland waybar kitty wofi wlogout hyprlock hypridle swww swaync grim slurp wl-clipboard brightnessctl playerctl dolphin bluez blueman)
+  desktop_pkgs=(hyprland waybar kitty wofi wlogout hyprlock hypridle swaybg swaync grim slurp wl-clipboard brightnessctl playerctl dolphin bluez blueman)
 
   if has_cmd dnf; then
     installer="dnf"
