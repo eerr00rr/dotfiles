@@ -66,12 +66,20 @@ install_packages() {
 
   local terminal_pkgs desktop_pkgs pkgs installer update_cmd install_cmd yesflag
   terminal_pkgs=(git curl zsh neovim tmux fzf ripgrep unzip tar less python3 nodejs npm restic)
-  desktop_pkgs=(hyprland waybar kitty wofi wlogout hyprlock hypridle swww swaync grim slurp wl-clipboard brightnessctl playerctl dolphin bluez blueman pulsemixer power-profiles-daemon)
+  desktop_pkgs=(hyprland waybar kitty wofi wlogout hyprlock hypridle swww swaync grim slurp wl-clipboard brightnessctl playerctl dolphin bluez blueman)
 
   if has_cmd dnf; then
     installer="dnf"
     terminal_pkgs+=(fd-find util-linux-user)
-    desktop_pkgs+=(NetworkManager-applet polkit-gnome)
+    desktop_pkgs+=(network-manager-applet)
+    if [[ "$MODE" == "desktop" ]]; then
+      if ! dnf copr --help >/dev/null 2>&1; then
+        log "Installing dnf COPR plugin..."
+        sudo dnf install -y dnf-plugins-core
+      fi
+      log "Enabling lionheartp/Hyprland COPR repository for Hyprland packages..."
+      sudo dnf copr enable lionheartp/Hyprland -y
+    fi
     install_cmd="sudo dnf install"
     yesflag="-y"
   elif has_cmd apt-get; then
@@ -85,7 +93,7 @@ install_packages() {
   elif has_cmd pacman; then
     installer="pacman"
     terminal_pkgs+=(fd)
-    desktop_pkgs+=(network-manager-applet polkit-gnome)
+    desktop_pkgs+=(network-manager-applet)
     install_cmd="sudo pacman -S --needed"
     yesflag="--noconfirm"
   else

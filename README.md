@@ -125,6 +125,8 @@ Then run:
 
 Package names vary by distribution, especially for Hyprland-related packages. If a package is unavailable, install that dependency manually and rerun with `--no-packages`.
 
+Fedora note: when using `dnf` for a desktop install, the installer enables the `lionheartp/Hyprland` COPR repository before package installation so Hyprland packages are available. The Fedora desktop package list uses `network-manager-applet` and intentionally does not install `power-profiles-daemon`, `polkit-gnome`, or `pulsemixer`.
+
 ## Making the repository smaller for GitHub
 
 After removing the vendored `icons/` and `theme/` directories, the local dotfiles folder is about **42 MB**. The largest folders before this cleanup were:
