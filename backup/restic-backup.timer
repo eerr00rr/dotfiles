@@ -1,0 +1,15 @@
+[Unit]
+Description=Run restic backup daily
+
+[Timer]
+OnCalendar=daily
+
+# This is the secret sauce: if the laptop was closed at the scheduled time, 
+# it will run the backup IMMEDIATELY when you open it.
+Persistent=true
+
+# Adds a random delay up to 15 mins so it doesn't slam your CPU the second you log in
+RandomizedDelaySec=15min
+
+[Install]
+WantedBy=timers.target

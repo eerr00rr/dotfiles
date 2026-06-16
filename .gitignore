@@ -1,0 +1,32 @@
+# Secrets
+backup/env
+*.secret
+*.key
+*.pem
+*.env
+.env
+
+# Local/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Backups created by install.sh
+*.bak
+*.bak-*
+
+# Runtime caches/state
+.cache/
+.local/share/nvim/
+.local/state/nvim/
+
+# Do not vendor downloaded plugin repos or downloaded desktop assets; install.sh fetches them.
+# Keep tmux/tmux.conf, but prefer not committing tmux/plugins/.
+tmux/plugins/
+icons/
+theme/
+
+# Nested upstream git metadata should never be committed
+**/.git/

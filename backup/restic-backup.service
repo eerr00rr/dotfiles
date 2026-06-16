@@ -1,0 +1,13 @@
+[Unit]
+Description=Restic backup to Dropbox
+After=network-online.target
+
+[Service]
+Type=oneshot
+
+# Load your env variables (Repository and Password) from a file
+EnvironmentFile=%h/Documents/dotfiles/backup/env
+ExecStart=/usr/bin/restic backup %h/Documents
+
+# Optional: Clean up old backups (keeps last 7 daily, 4 weekly)
+ExecStartPost=/usr/bin/restic forget --keep-daily 7 --keep-weekly 4 --prune

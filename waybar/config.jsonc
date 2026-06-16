@@ -1,0 +1,108 @@
+{
+    "layer": "top",
+    "height": 35,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock" // Add clock module to the center
+    ],
+    "clock": {
+        "interval": 30,
+        "format": "{:%I:%M %p}",
+        "tooltip-format": "{:%a, %d %b %G}"
+    },
+    "modules-right": [
+        "custom/backup",
+        "hyprland/language",
+        "pulseaudio",
+        "bluetooth",
+        "network",
+        "battery",
+        "power-profiles-daemon"
+    ],
+    "custom/backup": {
+        "format": "{}",
+        "return-type": "json",
+        "exec": "~/Documents/dotfiles/waybar/backup-status.sh",
+        "interval": 60, // Refresh every minute
+        "on-click": "systemctl --user start restic-backup.service",
+        "tooltip": true
+    },
+    "hyprland/window": {
+        "max-length": 30
+    },
+    "hyprland/language": {
+        "format-en": "En"
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 8
+    },
+    "pulseaudio": {
+        "format-source": "󰍬",
+        "format-source-muted": "󰍭",
+        "format": "{format_source} 󰕾 {volume}%",
+        "format-bluetooth": "{format_source} 󰂰 {volume}%",
+        "format-muted": "{format_source} 󰸈",
+        "on-click": "foot-popup pulsemixer",
+        "max-volume": 150,
+        "scroll-step": 1
+    },
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "",
+        "format-off": "",
+        "format-on": "󰂯",
+        "format-connected": "󰂱 {device_alias}",
+        "max-length": 16
+    },
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "󰖩  {essid}",
+        "format-ethernet": "󰈀 {ipaddr}",
+        "format-disconnected": "Disconnected",
+        "max-length": 32
+    },
+    "battery": {
+        "interval": 60,
+        "format-time": "{H}:{m}",
+        "format-icons": [
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ],
+        "format-discharging": "{icon} {capacity}% ({time})",
+        "format-charging": "󰂄 {capacity}%",
+        "format": "{icon} {capacity}"
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        },
+        "sort-by-number": true
+    }
+}
