@@ -267,6 +267,35 @@ install_backup_units() {
   fi
 }
 
+set_zsh_as_login_shell() {
+  if ! has_cmd zsh; then
+    warn "zsh is not installed or not in PATH; cannot change login shell."
+    return
+  fi
+
+  local zsh_path current_shell target_user
+  zsh_path="$(command -v zsh)"
+  target_user="${SUDO_USER:-${USER:-$(id -un)}}"
+  current_shell="$(getent passwd "$target_user" | cut -d: -f7 || true)"
+
+  if [[ "$current_shell" == "$zsh_path" ]]; then
+    log "Login shell for $target_user is already zsh ($zsh_path)."
+    return
+  fi
+
+  if ! grep -qxF "$zsh_path" /etc/shells 2>/dev/null; then
+    log "Adding $zsh_path to /etc/shells."
+    printf '%s\n' "$zsh_path" | sudo tee -a /etc/shells >/dev/null
+  fi
+
+  log "Changing login shell for $target_user to zsh ($zsh_path)."
+  if has_cmd chsh; then
+    sudo chsh -s "$zsh_path" "$target_user" || warn "Could not change shell with chsh. Try manually: chsh -s $zsh_path"
+  else
+    sudo usermod -s "$zsh_path" "$target_user" || warn "Could not change shell with usermod. Try manually: sudo usermod -s $zsh_path $target_user"
+  fi
+}
+
 main() {
   ask_mode
   log "Dotfiles directory: $DOTFILES_DIR"
@@ -282,15 +311,9 @@ main() {
     install_backup_units
   fi
 
-  if has_cmd zsh; then
-    local zsh_path
-    zsh_path="$(command -v zsh)"
-    if [[ "$SHELL" != "$zsh_path" ]]; then
-      warn "Your login shell is $SHELL. To switch to zsh, run: chsh -s $zsh_path"
-    fi
-  fi
+  set_zsh_as_login_shell
 
-  log "Install complete. Restart your shell, or log out/in for desktop changes."
+  log "Install complete. Restart your shell, or log out/in for the new zsh login shell and desktop changes to take effect."
 }
 
 main "$@"

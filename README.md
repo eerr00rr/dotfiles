@@ -110,7 +110,7 @@ Then run:
 ## Notes after installation
 
 - Restart your shell after running the installer.
-- If your login shell is not zsh, the installer prints the `chsh` command to run.
+- The installer automatically changes your login shell to zsh with `chsh` when zsh is installed; log out and back in for it to take effect.
 - Open `tmux` and press `prefix + I` to install tmux plugins through TPM.
 - For Hyprland changes, log out and back in.
 - Re-running `./install.sh --desktop` updates the cached Nordic and Nordzy git repositories with `git pull --ff-only`.
