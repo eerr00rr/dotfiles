@@ -222,7 +222,14 @@ install_tpm() {
   else
     log "TPM already exists."
   fi
-  warn "Open tmux and press prefix + I to install tmux plugins, or run TPM manually."
+
+  if [[ -x "$TPM_DIR/bin/install_plugins" ]]; then
+    log "Installing tmux plugins automatically through TPM..."
+    "$TPM_DIR/bin/install_plugins"
+  else
+    warn "TPM install script not found at $TPM_DIR/bin/install_plugins"
+    warn "Open tmux and press prefix + I to install plugins manually."
+  fi
 }
 
 link_terminal_configs() {
