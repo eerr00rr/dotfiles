@@ -171,7 +171,7 @@ Other size recommendations:
 ├── backup/          # restic systemd user service/timer and env template location
 ├── backgrounds/     # wallpapers
 ├── Hack-Nerd-Font/  # local Nerd Font files, optional for desktop font install
-├── hypr/            # Hyprland, hypridle, hyprlock config
+├── hypr/            # Hyprland legacy .conf, Hyprland 0.55+ Lua, hypridle, hyprlock config
 ├── kitty/           # Kitty terminal config
 ├── nvim/            # Neovim config
 ├── tmux/            # tmux config and sessionizer
