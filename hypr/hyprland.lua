@@ -19,7 +19,7 @@ hl.monitor({
 
 local terminal = "kitty"
 local fileManager = "dolphin"
-local wallpaper = os.getenv("HOME") .. "/Documents/dotfiles/backgrounds/wp12637705-nordic-4k-wallpapers.png"
+local wallpaper = os.getenv("HOME") .. "/dotfiles/backgrounds/wp12637705-nordic-4k-wallpapers.png"
 
 -------------------
 ---- AUTOSTART ----
@@ -137,7 +137,6 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 
 hl.config({
 	dwindle = {
-		pseudotile = true,
 		preserve_split = true,
 		force_split = 2,
 	},
@@ -168,7 +167,7 @@ hl.config({
 
 		touchpad = {
 			natural_scroll = false,
-			["tap-to-click"] = false,
+			tap_to_click = false,
 		},
 	},
 })
