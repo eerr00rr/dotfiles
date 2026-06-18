@@ -4,6 +4,7 @@ set -Eeuo pipefail
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/dotfiles-installer"
 NORDIC_THEME_REPO="https://github.com/EliverLara/Nordic.git"
+NORDIC_THEME_PATCH="$DOTFILES_DIR/themes/nordic-custom.patch"
 NORDZY_ICON_REPO="https://github.com/alvatip/Nordzy-icon.git"
 MODE="ask"
 INSTALL_PACKAGES=1
@@ -161,11 +162,31 @@ clone_or_update() {
   fi
 }
 
+reset_cached_git_repo() {
+  local dest="$1"
+  [[ -d "$dest/.git" ]] || return
+
+  log "Resetting $(basename "$dest") before update so local patches can be reapplied cleanly..."
+  git -C "$dest" reset --hard HEAD >/dev/null
+  git -C "$dest" clean -fd >/dev/null
+}
+
+apply_nordic_theme_patch() {
+  local theme_cache="$1"
+  [[ -f "$NORDIC_THEME_PATCH" ]] || return
+
+  log "Applying custom Nordic theme colors from $NORDIC_THEME_PATCH..."
+  git -C "$theme_cache" apply --check "$NORDIC_THEME_PATCH"
+  git -C "$theme_cache" apply "$NORDIC_THEME_PATCH"
+}
+
 install_downloaded_desktop_assets() {
   local theme_cache="$CACHE_DIR/Nordic"
   local icons_cache="$CACHE_DIR/Nordzy-icon"
 
+  reset_cached_git_repo "$theme_cache"
   clone_or_update "$NORDIC_THEME_REPO" "$theme_cache"
+  apply_nordic_theme_patch "$theme_cache"
   clone_or_update "$NORDZY_ICON_REPO" "$icons_cache"
 
   # nwg-look and GTK tools commonly scan ~/.local/share/themes; some older

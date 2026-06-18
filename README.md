@@ -27,7 +27,7 @@ The desktop profile includes everything from the terminal profile, plus:
 - `kitty/` → `~/.config/kitty`
 - `wlogout/` → `~/.config/wlogout`
 - Hack Nerd Font copied to `~/.local/share/fonts/Hack-Nerd-Font` when the local font folder exists
-- Nordic GTK theme downloaded from `https://github.com/EliverLara/Nordic.git`
+- Nordic GTK theme downloaded from `https://github.com/EliverLara/Nordic.git` and customized with `themes/nordic-custom.patch`
 - Nordzy icon theme downloaded from `https://github.com/alvatip/Nordzy-icon.git`
 - Restic systemd user units linked to `~/.config/systemd/user/`
 - Desktop dependencies such as `hyprland`, `waybar`, `kitty`, `wofi`, `wlogout`, `hyprlock`, `hypridle`, `swww`, `swaync`, `grim`, `slurp`, `wl-clipboard`, `brightnessctl`, and `playerctl`
@@ -52,7 +52,18 @@ The icons are linked to:
 ~/.local/share/icons/Nordzy
 ```
 
-This keeps the dotfiles repository small while still installing the full theme and icon set on desktop machines. If `nwg-look` does not show Nordic, rerun `./install.sh --desktop --no-packages` and restart `nwg-look`; it usually scans `~/.local/share/themes`.
+This keeps the dotfiles repository small while still installing the full theme and icon set on desktop machines. During each desktop install, `install.sh` resets the cached Nordic checkout, updates it, then reapplies `themes/nordic-custom.patch` so your color changes are reproducible without vendoring the whole GTK theme.
+
+The current Nordic patch changes the core background/foreground palette:
+
+```text
+Nord 0 / main dark background: #2e3440 -> #191D24
+Nord 1 / base background:      #3b4252 -> #202632
+Nord 2 / widget background:    #434c5e -> #2A303D
+Nord 4 / main foreground text: #d8dee9 -> #E6EDF7
+```
+
+If `nwg-look` does not show Nordic, rerun `./install.sh --desktop --no-packages` and restart `nwg-look`; it usually scans `~/.local/share/themes`.
 
 ## Quick start
 
@@ -175,6 +186,7 @@ Other size recommendations:
 ├── kitty/           # Kitty terminal config
 ├── nvim/            # Neovim config
 ├── tmux/            # tmux config and sessionizer
+├── themes/          # small tracked patches for downloaded themes
 ├── waybar/          # Waybar config/style/scripts
 ├── wlogout/         # logout menu config/style
 └── zsh/             # zshrc and Powerlevel10k config
